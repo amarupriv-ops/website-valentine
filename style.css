@@ -1,0 +1,114 @@
+body{
+margin:0;
+font-family:Segoe UI;
+color:white;
+overflow:hidden;
+background:linear-gradient(-45deg,#ff9a9e,#fad0c4,#ffdde1,#ffc3a0);
+background-size:400% 400%;
+animation:bgMove 12s infinite alternate;
+}
+
+@keyframes bgMove{
+0%{background-position:left}
+100%{background-position:right}
+}
+
+.center{
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+height:100vh;
+text-align:center;
+padding:20px;
+}
+
+.hidden{display:none;}
+
+.glow{
+font-size:45px;
+animation:glow 2s ease-in-out infinite alternate;
+}
+@keyframes glow{
+from{text-shadow:0 0 10px white}
+to{text-shadow:0 0 40px pink}
+}
+
+.click{
+opacity:.8;
+margin-top:20px;
+animation:blink 1.5s infinite;
+}
+@keyframes blink{
+50%{opacity:.2}
+}
+
+#puzzle{
+display:grid;
+grid-template-columns:repeat(2,90px);
+gap:12px;
+margin-top:20px;
+}
+
+.tile{
+background:white;
+color:black;
+font-size:30px;
+padding:25px;
+border-radius:15px;
+cursor:pointer;
+transition:.3s;
+}
+
+.tile:hover{
+transform:scale(1.1);
+background:#ffd6e7;
+}
+
+.loveText{
+font-size:60px;
+animation:pop 1.2s ease;
+}
+@keyframes pop{
+0%{transform:scale(0)}
+100%{transform:scale(1)}
+}
+
+#slide{
+width:330px;
+height:330px;
+border-radius:25px;
+object-fit:cover;
+box-shadow:0 0 60px rgba(255,255,255,.7);
+animation:zoom 4s infinite alternate ease-in-out;
+}
+@keyframes zoom{
+from{transform:scale(1)}
+to{transform:scale(1.1)}
+}
+
+.final{
+font-size:50px;
+animation:glow 2s infinite alternate;
+}
+
+.finalMsg{
+width:70%;
+line-height:1.7;
+font-size:18px;
+}
+
+/* HEART PARTICLES */
+#hearts span{
+position:absolute;
+color:#ff6fa5;
+font-size:20px;
+animation:fall linear infinite;
+}
+
+@keyframes fall{
+to{
+transform:translateY(100vh);
+opacity:0;
+}
+}
