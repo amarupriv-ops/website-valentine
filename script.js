@@ -1,6 +1,5 @@
 const bgm=document.getElementById("bgm")
 
-// start on click
 document.body.addEventListener("click",()=>{
 bgm.play()
 show("stage2","stage1")
@@ -12,10 +11,18 @@ document.getElementById(hide).classList.add("hidden")
 document.getElementById(id).classList.remove("hidden")
 }
 
-// PUZZLE
+// PUZZLE RANDOM FIX
 function initPuzzle(){
-let nums=[1,2,3,4].sort(()=>Math.random()-0.5)
+let nums=[1,2,3,4]
+
+// Fisher-Yates shuffle
+for(let i=nums.length-1;i>0;i--){
+let j=Math.floor(Math.random()*(i+1))
+;[nums[i],nums[j]]=[nums[j],nums[i]]
+}
+
 let box=document.getElementById("puzzle")
+box.innerHTML=""
 
 nums.forEach(n=>{
 let d=document.createElement("div")
@@ -27,6 +34,7 @@ box.appendChild(d)
 }
 
 let first=null
+
 function swap(el){
 if(!first){
 first=el
@@ -44,8 +52,11 @@ let ok=true
 document.querySelectorAll(".tile").forEach((t,i)=>{
 if(t.textContent!=i+1) ok=false
 })
+
 if(ok){
-document.getElementById("status").textContent="Yay berhasil ❤️"
+document.getElementById("status").textContent="Yay ❤️"
+navigator.vibrate?.(200)
+
 setTimeout(()=>{
 show("stage3","stage2")
 typing()
@@ -53,7 +64,7 @@ typing()
 }
 }
 
-// TYPING
+// TYPING TEXT
 function typing(){
 let text=`Hai Calon istrikuu...
 Aku mungkin belum bisa jadi yang sempurna.
@@ -115,13 +126,12 @@ document.getElementById("counter").innerHTML=
 "Kita sudah bersama <b>"+days+"</b> hari ❤️"
 }
 
-// HEART PARTICLES
+// HEARTS
 setInterval(()=>{
 let heart=document.createElement("span")
 heart.innerHTML="❤"
 heart.style.left=Math.random()*100+"vw"
 heart.style.animationDuration=(Math.random()*3+3)+"s"
 document.getElementById("hearts").appendChild(heart)
-
 setTimeout(()=>heart.remove(),6000)
 },300)
